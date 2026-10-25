@@ -1,12 +1,10 @@
-# %% [markdown]
-# Lesson 1: Simple ReAct Agent from Scratch — Anthropic (Claude) version
+# Simple ReAct Agent from Scratch — Anthropic (Claude) version
 # Based on https://til.simonwillison.net/llms/python-react-pattern
 #
 # Setup:
 #   uv pip install anthropic python-dotenv
 #   .env file in this folder:  ANTHROPIC_API_KEY=sk-ant-...
 
-# %%
 import re
 from dotenv import load_dotenv
 from anthropic import Anthropic
@@ -16,7 +14,6 @@ client = Anthropic()  # reads ANTHROPIC_API_KEY from env
 
 MODEL = "claude-sonnet-5-5"  # check console.anthropic.com for current model names
 
-# %% Hello world
 resp = client.messages.create(
     model=MODEL,
     max_tokens=256,                      # required by Anthropic
@@ -25,7 +22,7 @@ resp = client.messages.create(
 print(resp.content[0].text)
 
 
-# %% Agent class
+# Agent class
 class Agent:
     def __init__(self, system=""):
         self.system = system             # Anthropic: system prompt is a separate param,
@@ -79,7 +76,7 @@ class Agent:
         return text or "(empty response)"
 
 
-# %% ReAct prompt (unchanged from the course)
+# ReAct prompt
 prompt = """
 You run in a loop of Thought, Action, PAUSE, Observation.
 At the end of the loop you output an Answer
@@ -114,7 +111,7 @@ Answer: A bulldog weights 51 lbs
 """.strip()
 
 
-# %% Tools
+# Tools
 def calculate(what):
     return eval(what)  # fine for learning; never eval untrusted input in real code
 
@@ -135,7 +132,7 @@ known_actions = {
     "average_dog_weight": average_dog_weight,
 }
 
-# %% Manual loop, single tool call
+# Manual loop, single tool call
 abot = Agent(prompt)
 print(abot("How much does a toy poodle weigh?"))
 
@@ -143,7 +140,7 @@ result = average_dog_weight("Toy Poodle")
 print(abot(f"Observation: {result}"))
 print(abot.messages)
 
-# %% Manual loop, multiple tool calls
+# Manual loop, multiple tool calls
 abot = Agent(prompt)
 question = "I have 2 dogs, a border collie and a scottish terrier. What is their combined weight"
 print(abot(question))
@@ -151,7 +148,7 @@ print(abot(f"Observation: {average_dog_weight('Border Collie')}"))
 print(abot(f"Observation: {average_dog_weight('Scottish Terrier')}"))
 print(abot(f"Observation: {eval('37 + 20')}"))
 
-# %% Automated loop
+# Automated loop
 action_re = re.compile(r"^Action: (\w+): (.*)$")  # raw string avoids a warning in Python 3.12
 
 

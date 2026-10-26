@@ -1,0 +1,93 @@
+[1;3;38;5;200mSelecting query engine 0: The question asks for a summary of the document, and choice 1 is described as useful for summarization questions related to MetaGPT. Choice 2 is meant for retrieving specific context, which does not fit a request for an overall summary..
+[0m**Overview**
+
+The document introduces MetaGPT, a meta-programming framework for multi-agent collaboration built on large language models (LLMs). Existing LLM-based multi-agent systems can handle simple dialogue tasks. On more complex tasks they suffer logic inconsistencies from cascading hallucinations caused by naively chaining LLMs. MetaGPT addresses this by encoding human Standardized Operating Procedures (SOPs) into prompt sequences. Agents with human-like domain expertise can then verify intermediate results and reduce errors.
+
+**Core design**
+
+- **Role specialization:** The framework simulates a software company with five roles: Product Manager, Architect, Project Manager, Engineer, and QA Engineer. Each role has a defined profile, goal, constraints, context, and skills.
+- **SOP-based workflow:** Agents work in an assembly-line sequence.
+  1. The Product Manager turns user requirements into a PRD.
+  2. The Architect produces system design, file lists, data structures, and interface definitions.
+  3. The Project Manager distributes tasks.
+  4. Engineers write the code.
+  5. The QA Engineer creates test cases.
+- **Structured communication:** Agents exchange documents and diagrams rather than free-form dialogue. This reduces ambiguity, distortion, and irrelevant chatter.
+- **Publish-subscribe mechanism:** A shared message pool lets agents publish structured messages. Agents subscribe only to the information relevant to their roles, which avoids information overload and inefficient one-to-one communication.
+- **Executable feedback:** The Engineer runs the code and unit tests, then debugs using its history of execution and debugging. This repeats until the tests pass or 3 retries are reached.
+
+**Experiments and results**
+
+- **Benchmarks:** MetaGPT was evaluated on HumanEval (164 tasks), MBPP (427 tasks), and SoftwareDev, a self-built set of 70 software development tasks. Seven representative SoftwareDev tasks were used in the main comparisons.
+- **Code generation:** MetaGPT reaches state-of-the-art Pass@1 of 85.9% on HumanEval and 87.7% on MBPP. Executable feedback adds improvements of 4.2% and 5.4% respectively.
+- **Comparison with ChatDev on SoftwareDev:**
+  - Executability: 3.75 for MetaGPT versus 2.25 for ChatDev.
+  - Running time: 541 seconds versus 762 seconds.
+  - Tokens per line of code: about 124 versus about 249.
+  - Human revision cost: 0.83 versus 2.5.
+  - MetaGPT uses more total tokens but produces much more code.
+- **Other frameworks:** AutoGPT, LangChain, and AgentVerse score 1.0 on executability, meaning they fail to produce working code. ChatDev averages 2.1 and MetaGPT 3.9 on the per-task comparison.
+- **Capabilities:** Only MetaGPT offers PRD generation, technical design generation, API interface generation, and precompilation execution.
+- **Ablation on roles:** Adding roles beyond the Engineer steadily improves executability and reduces revisions, at slightly higher cost.
+- **Different LLMs:** MetaGPT works with GPT-3.5 and Deepseek Coder 33B, but GPT-4 gives the best results.
+- **Instruction detail:** Detailed prompts give slightly better results, but high-level prompts still yield good software.
+
+**Limitations, ethics, and outlook**
+
+- **Limitations:**
+  - The system does not yet handle UI or front-end scenarios, since it lacks multimodal agents and tools.
+  - Meeting complex real-world requirements remains difficult.
+  - Users cannot easily interrupt agents or set checkpoints.
+- **Ethics:** The discussion covers skill obsolescence, transparency, and privacy. MetaGPT runs locally, is open source, and supports open-source LLM backends.
+- **Future directions:**
+  - Self-improvement mechanisms, in which agents update their constraint prompts based on feedback from past projects.
+  - Multi-agent economies, such as DeepWisdom's AgentStore, where agents offer paid services within the MetaGPT framework.
+
+**Conclusion**
+
+Integrating human-like SOPs, role specialization, structured communication, and executable feedback substantially improves the coherence, robustness, and code quality of LLM-based multi-agent systems.
+34
+[1;3;38;5;200mSelecting query engine 1: The question asks how agents share information with other agents, which is a specific detail about the mechanism. Choice 2 is for retrieving specific context from the MetaGPT paper, so it fits better than choice 1, which is for broad summarization questions..
+[0mAgents share information through a shared global message pool, rather than through one-to-one dialogue. Each agent publishes its structured messages (documents and diagrams that follow a schema and format defined for its role) to the pool. Other agents can then retrieve what they need directly, without asking specific agents and waiting for replies. This keeps the communication topology simple and makes communication more efficient.
+
+To prevent information overload, a subscription mechanism filters what each agent receives. Agents select the information to follow based on their role profiles and interests. In practice, an agent starts its action only after all of its prerequisite dependencies have been received. For example, the Architect mainly follows the PRDs from the Product Manager and pays less attention to documents from roles such as the QA Engineer.
+
+Because the exchanged outputs are structured documents and diagrams, such as the Architect's system interface design and sequence flow diagram, they contain all the necessary information. This avoids irrelevant or missing content and reduces the distortion that can build up over several rounds of conversational communication.
+[1;3;38;5;200mSelecting query engine 1: The question asks about specific ablation study results, which are details found in particular sections of the MetaGPT paper. Choice 2 is for retrieving specific context from the paper, so it fits better than choice 1, which covers general summarization questions..
+[0mThe provided material describes several additional experiments, but it doesn't include a dedicated ablation study of MetaGPT's components. The closest results are below.
+
+**Executability comparison (scored 1–4)**
+- MetaGPT averaged 3.9, well ahead of ChatDev (2.1) and AutoGPT, LangChain and AgentVerse (1.0 each).
+- MetaGPT scored 4 on every task except Flappy bird, where it scored 3. These tasks were the Tank battle, 2048, Snake and Brick breaker games, Excel data processing and CRUD management.
+- ChatDev scored 4 only on Excel data processing.
+
+**Different LLM backends on SoftwareDev**
+
+| Backend | Open source | Time (s) | # Lines | Executability | Revisions |
+|---|---|---|---|---|---|
+| GPT-3.5 | No | 75.18 | 161.6 | 2.8 | 2.4 |
+| GPT-4 | No | 552.94 | 178.2 | 3.8 | 1.2 |
+| Deepseek Coder 33B | Yes | 1186.20 | 120.2 | 1.4 | 2.6 |
+
+- GPT-4 gave the best executability (3.8) and needed the fewest revisions (1.2).
+- GPT-3.5 was the fastest, but its executability was lower (2.8).
+- The open-source Deepseek Coder 33B was the slowest and had the lowest executability (1.4).
+
+**Instruction level (high-level vs. detailed prompts, 5 SoftwareDev tasks)**
+
+| Prompt | # Words | Time (s) | Token usage | # Lines | Executability | Productivity | Revisions |
+|---|---|---|---|---|---|---|---|
+| High-level | 13.2 | 552.9 | 28,384.2 | 178.2 | 3.8 | 163.8 | 1.2 |
+| Detailed | 42.2 | 567.8 | 29,657.0 | 257.0 | 4.0 | 118.0 | 1.6 |
+
+- Productivity is token usage divided by total code lines, so lower is better.
+- Detailed prompts produced better software, with executability of 4.0 and a lower productivity ratio, because the requirements and functions were clearer.
+- Simple high-level inputs still produced good software, with executability of 3.8, which is comparable to the detailed-prompt case.
+
+**GPT variants on HumanEval**
+- The baseline is GPT-4's reported 67% HumanEval score.
+- GPT-4 (gpt-4-0613) and GPT-3.5-Turbo (gpt-3.5-turbo-0613) were each tested five times under several conditions:
+  - (A) calling the API directly with the HumanEval prompt;
+  - (B) calling the API and parsing the code from the response with regex;
+  - (C) adding a system prompt that tells the model to respond only with Python code.
+- The text is cut off before any results for these conditions.

@@ -1,0 +1,57 @@
+[1;3;38;5;200mSelecting query engine 0: The question asks for a summary of the document, and choice 1 is described as useful for summarization questions related to MetaGPT. Choice 2 is for retrieving specific context, which does not fit a request for an overall summary..
+[0m**Overview**
+
+MetaGPT is a meta-programming framework for LLM-based multi-agent collaboration. It targets a weakness of existing multi-agent systems: on complex tasks they produce logic inconsistencies, because naively chaining LLMs lets hallucinations cascade. MetaGPT addresses this by building human workflows, specifically Standardized Operating Procedures (SOPs), into prompt sequences. Agents with human-like domain expertise can then verify intermediate results and reduce errors.
+
+**Key design elements**
+
+- **Role specialization:** The system simulates a software company with five roles: Product Manager, Architect, Project Manager, Engineer, and QA Engineer. Each role has a defined profile, goal, constraints, and skills.
+- **Assembly-line workflow:** Tasks pass sequentially through the roles. The Product Manager writes a PRD, the Architect produces the system design, the Project Manager distributes tasks, the Engineers write code, and the QA Engineer creates tests.
+- **Structured communication:** Agents exchange documents and diagrams (PRDs, design artifacts, flowcharts, interface specifications) instead of free-form dialogue. This reduces ambiguity and "idle chatter."
+- **Publish-subscribe mechanism:** A shared message pool lets agents publish and retrieve information directly. Subscriptions filter this information by role so agents are not overloaded with irrelevant content.
+- **Executable feedback:** The Engineer runs the generated code and unit tests, then debugs and iterates, up to 3 retries, to improve code quality at runtime.
+
+**Experimental results**
+
+- **Benchmarks:** MetaGPT reaches state-of-the-art Pass@1 scores of 85.9% on HumanEval and 87.7% on MBPP. Executable feedback adds 4.2% on HumanEval and 5.4% on MBPP.
+- **SoftwareDev:** On a 70-task software development benchmark, MetaGPT outperforms ChatDev on nearly all metrics. Its executability score is 3.75 out of 4, against 2.25 for ChatDev. It runs faster, generates more code, needs less human revision, and uses fewer tokens per line of code (about 124–126 vs. 249). Baselines such as AutoGPT, LangChain, and AgentVerse mostly fail to produce executable code.
+- **Capabilities:** MetaGPT is the only compared framework offering PRD generation, technical design generation, API interface generation, and precompilation execution.
+- **Ablation:** Adding roles beyond the Engineer consistently improves executability and reduces revision costs, at a slight increase in expense.
+- **Other findings:** GPT-4 as the backend outperforms GPT-3.5 and Deepseek Coder 33B. Detailed prompts give slightly better results, but high-level prompts still produce good software.
+
+**Outlook, limitations, and ethics**
+
+- **Outlook:** The authors discuss self-improvement mechanisms, in which agents update their constraint prompts using feedback from past projects. They also discuss multi-agent economies, such as the AgentStore platform.
+- **Limitations:** The system does not yet handle UI and front-end scenarios or multimodal tools, and it is still difficult to meet diverse real-world requirements. Users also cannot easily interrupt agents or set checkpoints.
+- **Ethics:** The authors consider unemployment and skill obsolescence, transparency and accountability, and privacy and data security.
+
+**Conclusion**
+
+Integrating human-like SOPs into LLM-based multi-agent systems improves robustness, reduces unproductive collaboration, and raises code generation quality. The authors see this as an early step toward regulating LLM-based multi-agent frameworks.
+65
+[1;3;38;5;200mSelecting query engine 1: The question asks how agents share information with each other, which is a specific detail about the mechanism. Choice 2 is for retrieving specific context from the MetaGPT paper, so it fits better than choice 1, which is for summarization questions..
+[0mAgents share information through a combination of structured communication and a shared message pool with a subscription mechanism.
+
+**Structured communication:** Each role has a defined schema and format for its outputs. Instead of holding free-form dialogue, agents communicate through documents and diagrams. For example, the Architect produces a system interface design and a sequence flow diagram. These documents contain all the necessary information, which prevents irrelevant or missing content and avoids the distortion that can build up over several rounds of conversation.
+
+**Shared message pool (publish-subscribe):** Rather than passing information one-to-one, which complicates the communication topology and is inefficient, agents publish their structured messages to a global message pool. Any agent can then read messages from other agents directly and transparently. It does not need to ask another agent or wait for a reply, which makes communication more efficient.
+
+**Subscription mechanism:** Giving every agent all information could cause overload. To avoid this, agents subscribe only to the information relevant to their role profiles and extract what they need based on their role-specific interests. An agent activates its action only after it has received all of its prerequisite dependencies. For example, the Architect mainly follows the PRDs from the Product Manager and is less concerned with documents from roles like the QA Engineer.
+[1;3;38;5;200mSelecting query engine 1: The question asks about the ablation study results, which are specific details found in particular sections of the MetaGPT paper. Choice 2 is for retrieving specific context from the paper. Choice 1 is for general summarization questions and is a weaker fit for a request about specific results..
+[0mThe ablation study examined how different roles affect the final results. Two tasks were run, involving generating effective code and calculating average statistics. When certain roles were excluded, the system produced unworkable code.
+
+**Results by role configuration (Table 3):**
+
+| Roles | # Agents | # Lines | Expense | Revisions | Executability |
+|---|---|---|---|---|---|
+| Engineer only | 1 | 83.0 | $0.915 | 10 | 1.0 |
+| + Product manager | 2 | 112.0 | $1.059 | 6.5 | 2.0 |
+| + Product manager + Architect | 3 | 143.0 | $1.204 | 4.0 | 2.5 |
+| + Product manager + Project manager | 3 | 205.0 | $1.251 | 3.5 | 2.0 |
+| All four roles | 4 | 191.0 | $1.385 | 2.5 | 4.0 |
+
+**Key findings:**
+- Adding roles beyond the Engineer consistently improved both human revision cost and executability.
+- Revisions fell from 10 with the Engineer alone to 2.5 with all four roles.
+- Executability rose from 1.0 to 4.0, the maximum score.
+- More roles raised expenses slightly, from $0.915 to $1.385. Overall performance still improved noticeably, which shows the value of the different roles.

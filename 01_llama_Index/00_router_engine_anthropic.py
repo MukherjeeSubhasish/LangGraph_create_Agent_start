@@ -1,4 +1,3 @@
-# %% [markdown]
 # Agentic RAG with LlamaIndex — Lesson 1: Router Query Engine (Claude version)
 #
 # Setup (run inside your venv):
@@ -67,7 +66,7 @@ def get_router_query_engine(file_path, verbose=True):
     )
 
 
-query_engine = get_router_query_engine("metagpt.pdf")
+query_engine = get_router_query_engine("/Users/smukher5/codebase_main/00_langGraph_Coursera/01_llama_Index/metagpt.pdf")
 
 # %% Summary question -> should route to summary_tool
 response = query_engine.query("What is the summary of the document?")

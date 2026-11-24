@@ -1,0 +1,56 @@
+The sources describe the Nvidia Blackwell GPU architecture as featuring a massive die size of 750mm² with 92.2 billion transistors, 192 Streaming Multiprocessors, and a memory subsystem with L2 bandwidth of approximately 8.7 TB/s. The Blackwell Ultra variant includes two reticle-sized dies connected with a 10 TB/s NV-HBI interface, manufactured on TSMC 4NP with 208B transistors, and HBM3E memory capacity reaching 288 GB with 8 TB/s bandwidth. The embedded Blackwell GPUs feature up to 24GB of GDDR7 VRAM, fifth-generation Tensor Cores with FP4 precision support, and PCIe Gen 5 for double the data ingest speed. The architecture also includes a custom-built four-nanometer manufacturing process and a fifth-generation NVLink network switch providing up to 1.8 terabits per second of bidirectional throughput per GPU.
+https://weather.com/us/california/city/san-francisco/today
+https://weather.com/en-NA/us/california/city/san-francisco/today
+https://www.accuweather.com/en/us/san-francisco/94103/hourly-weather-forecast/347629
+https://www.theweathernetwork.com/en/city/us/california/san-francisco/current
+https://www.accuweather.com/en/us/san-francisco/94103/current-weather/347629
+https://www.easeweather.com/north-america/united-states/california/city-and-county-of-san-francisco/san-francisco/today
+Website: https://weather.com/us/california/city/san-francisco/today
+
+
+<body class="PPczxG_className font-sans"><div hidden=""><!--$--><!--/$--></div><script>(self.__next_s=self.__next_s||[]).push([0,{"children":"(function(){\n        try{\n          var cookies=document.cookie.split('; ');\n          var sessionCookie='';\n          for(var i=0;i\u003ccookies.length;i++){\n            if(cookies[i].indexOf('wxu-metrics-session=')===0){\n              sessionCookie=cookies[i].slice(20);break;\n            }\n          }\n          var now=Date.now();\n          var la=parseInt(localStorage.getItem('metric-session-last-active-time')||'0',10);\n          var expired=la\u003e0\u0026\u0026Math.abs(now-la)\u003e1800000;\n          if(!sessionCookie||expired){\n            var id=crypto\u0026\u0026crypto.randomUUID ? crypto.randomUUID() : (function(){\n              return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){\n                var r=Math.random()*16|0;return(c==='x'?r:(r\u00260x3|0x8)).toString(16);\n              });\n            })();\n            document.cookie='wxu-metrics-session='+id+':'+now+':0; domain=.weather.com; path=/; max-age=1800; samesite=lax; secure';\n            localStorage.setItem('metric-session-last-active-time',now.toString());\n            localStorage.setItem('new-metrics-session','true');\n            localStorage.setItem('wx-ht-new-metrics-session','true');\n          } else {\n            localStorage.setItem('metric-session-last-active-time',now.toString());\n          }\n        }catch(e){}\n      })();","id":"metrics-session-init"}])</script><script id="wx-amp-flags">window.__wxAmpFlags="[{\"key\":\"checkout-provider\",\"metadata\":{\"deployed\":true,\"evaluationMode\":\"remote\",\"flagType\":\"release\",\"flagVersion\":6},\"segments\":[{\"metadata\":{\"segmentName\":\"default\"},\"variant\":\"off\"}],\"variants\":{\"error\":{\"key\":\"error\",\"value\":\"error\"},\"off\":{\"key\":\"off\",\"metadata\":{\"default\":true}},\"split\":{\"key\":\"split\",\"value\":\"split\"},\"stripe\":{\"key\":\"stripe\",\"value\":\"stripe\"},\"zuora\":{\"key\":\"zuora\",\"value\":\"zuora\"}}},{\"key\":\"cw12138\",\"metadata\":{\"deployed\":true,\"evaluationMode\":\"remote\",\"experimentKey\":\"exp-2\",\"flagType\":\"experiment\",\"flagVersion\":7},\"segments\":[{\"metadata\":{\"segmentName\":\"default\"},\"variant\":\"off\"}],\"variants\":{\"a\":{\"key\":\"a\",\"payload\":{\"atf\":{\"interval\":28000},\"btf\":{\"interval\":28000}},\"value\":\"a\"},\"b\":{\"key\":\"b\",\"payload\":{\"atf\":{\"interval\":27000},\"btf\":{\"interval\":27000}},\"value\":\"b\"},\"control\":{\"key\":\"control\",\"payload\":{},\"value\":\"control\"},\"off\":{\"key\":\"off\",\"metadata\":{\"default\":true}}}},{\"key\":\"cw12648\",\"metadata\":{\"deployed\":true,\"evaluationMode\":\"remote\",\"experimentKey\":\"exp-1\",\"flagType\":\"experiment\",\"flagVersion\":3},\"segments\":[{\"metadata\":{\"segmentName\":\"default\"},\"variant\":\"off\"}],\"variants\":{\"a\":{\"key\":\"a\",\"payload\":{\"helios\":{\"general\":{\"unmaskedIp\":true}}},\"value\":\"a\"},\"b\":{\"key\":\"b\",\"payload\":{\"helios\":{\"general\":{\"unmaskedIp\":false}}},\"value\":\"b\"},\"control\":{\"key\":\"control\",\"payload\":{\"helios\":{\"general\":{\"unmaskedIp\":true}}},\"value\":\"control\"},\"off\":{\"key\":\"off\",\"metadata\":{\"default\":true}}}},{\"key\":\"cw13694\",\"metadata\":{\"deployed\":true,\"evaluationMode\":\"local\",\"experimentKey\":\"exp-1\",\"flagType\":\"experiment\",\"flagVersion\":8},\"segments\":[{\"bucket\":{\"allocations\":[{\"distributions\":[{\"range\":[0,21474837],\"variant\":\"control\"},{\"range\":[21474836,42949673],\"variant\":\"a\"}],\"range\":[0,100]}],\"salt\":\"FzxZdlfu\",\"selector\":[\"context\",\"user\",\"device_id\"]},\"metadata\":{\"segmentName\":\"All Other Users\"},\"variant\":\"off\"}],\"variants\":{\"a\":{\"key\":\"a\",\"payload\":{\"helios\":{\"general\":{\"cModules\":{\"iabc\":{\"ortb2EnablePublisher\":false,\"ortb2EnableSectionCat\":false},\"siteContent\":{\"on\":false}},\"ssps\":{\"demandManager\":{\"ortb2EnableImpPos\":false}},\"video\":{\"ssps\":{\"demandManager\":{\"ortb2EnableImpPos\":false}}}}}},\"value\":\"a\"},\"control\":{\"key\":\"control\",\"payload\":{},\"value\":\"control\"},\"off\":{\"key\":\"off\",\"metadata\":{\"default\":true}}}},{\"key\":\"cw14216\",\"metadata\":{\"deployed\":true,\"evaluationMode\":\"local\",\"experimentKey\":\"exp-1\",\"flagType\":\"experiment\",\"flagVersion\":4},\"segments\":[{\"bucket\":{\"allocations\":[{\"distributions\":[{\"range\":[0,4294968],\"variant\":\"control\"},{\"range\":[4294967,42949673],\"variant\":\"a\"}],\"range\":[0,100]}],\"salt\":\"QOi1yRKY\",\"selector\":[\"context\",\"user\",\"device_id\"]},\"metadata\":{\"segmentName\":\"All Other Users\"},\"variant\":\"off\"}],\"variants\":{\"a\":{\"key\":\"a\",\"payload\":{\"helios\":{\"general\":{\"cModules\":{\"assertiveYield\":{\"abTest\":{\"allowedPages\":[{\"chanceB\":1,\"locale\":\".*\",\"pageKey\":\".*\",\"plat\":\".*\"}],\"stickyStorageVersio
+Website: https://weather.com/us/california/city/san-francisco/today
+
+
+Forecasts Today Hourly 10 Day Monthly Allergies Air Quality Cold & Flu Radar & Maps Radar Discover Top Stories Severe Weather Health & Wellness Upgrade San Francisco Weather San Francisco, California · Today's Outlook San Francisco Daily Forecast Radar map Trending Now Editor's Pick The Weather Channel was found to be the world’s most accurate forecaster in ForecastWatch’s Global and Regional Weather Forecast Accuracy Overview, 2021-2024, commissioned by The Weather Company. Privacy & Legal Trust Center Terms of Use Privacy Policy Data Rights Privacy Settings Cookie Notice Data Vendors AdChoices Accessibility Statement Community Guidelines More Mission Bios Newsletter Sign Up Feedback Careers News Room Advertise With Us TV Weather Data APIs Alexa Skill Weather Labs Atmosphere Community Sitemap AI Instructions © The Weather Company, LLC 2026
+{"location": {"name": "San Francisco", "region": "California", "country": "United States of America", "localtime": "2026-11-23 16:00"}, "current": {"last_updated": "2026-11-23 15:45", "temp_c": 13.5, "temp_f": 56.2, "feelslike_c": 12.5, "feelslike_f": 54.5, "humidity": 64, "wind_kph": 3.6, "wind_mph": 2.2, "wind_dir": "NE", "precip_mm": 0.0, "precip_in": 0.0, "chance_of_rain": 10, "chance_of_snow": 0, "uv": 0.9, "condition": "Cloudy"}}
+Saved weather.json
+{[37m[39;49;00m
+[37m    [39;49;00m[94m"location"[39;49;00m:[37m [39;49;00m{[37m[39;49;00m
+[37m        [39;49;00m[94m"name"[39;49;00m:[37m [39;49;00m[33m"San Francisco"[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"region"[39;49;00m:[37m [39;49;00m[33m"California"[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"country"[39;49;00m:[37m [39;49;00m[33m"United States of America"[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"localtime"[39;49;00m:[37m [39;49;00m[33m"2026-11-23 16:00"[39;49;00m[37m[39;49;00m
+[37m    [39;49;00m},[37m[39;49;00m
+[37m    [39;49;00m[94m"current"[39;49;00m:[37m [39;49;00m{[37m[39;49;00m
+[37m        [39;49;00m[94m"last_updated"[39;49;00m:[37m [39;49;00m[33m"2026-11-23 15:45"[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"temp_c"[39;49;00m:[37m [39;49;00m[34m13.5[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"temp_f"[39;49;00m:[37m [39;49;00m[34m56.2[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"feelslike_c"[39;49;00m:[37m [39;49;00m[34m12.5[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"feelslike_f"[39;49;00m:[37m [39;49;00m[34m54.5[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"humidity"[39;49;00m:[37m [39;49;00m[34m64[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"wind_kph"[39;49;00m:[37m [39;49;00m[34m3.6[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"wind_mph"[39;49;00m:[37m [39;49;00m[34m2.2[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"wind_dir"[39;49;00m:[37m [39;49;00m[33m"NE"[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"precip_mm"[39;49;00m:[37m [39;49;00m[34m0.0[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"precip_in"[39;49;00m:[37m [39;49;00m[34m0.0[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"chance_of_rain"[39;49;00m:[37m [39;49;00m[34m10[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"chance_of_snow"[39;49;00m:[37m [39;49;00m[34m0[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"uv"[39;49;00m:[37m [39;49;00m[34m0.9[39;49;00m,[37m[39;49;00m
+[37m        [39;49;00m[94m"condition"[39;49;00m:[37m [39;49;00m[33m"Cloudy"[39;49;00m[37m[39;49;00m
+[37m    [39;49;00m}[37m[39;49;00m
+}[37m[39;49;00m
+
+
+Claude's answer:
+ **Current weather in San Francisco** (updated 15:45 local time on Nov 23, 2026):
+- Cloudy, 13.5 °C (56.2 °F), feels like 12.5 °C (54.5 °F)
+- Humidity 64%
+- Wind: light, 3.6 kph (2.2 mph) from the NE
+- No precipitation, with a 10% chance of rain
+- UV index 0.9 (low)
+
+**Should you travel today?**
+Based on the weather alone, nothing in the results suggests today is a bad day to go. Conditions are mild, calm and dry. The daily table lists Nov 23 as partly cloudy, 14°/7°, with 0 mm of rain.
+
+- **Rain tomorrow:** Light rain is

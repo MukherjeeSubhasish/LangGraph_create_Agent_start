@@ -1,0 +1,57 @@
+TAVILY CLIENT vs ANTHROPIC CALL - SUMMARY
+==========================================
+
+1. WHAT EACH ONE IS
+-------------------
+Tavily client  : A search engine API built for AI agents.
+Anthropic call : A language model API (Claude).
+
+                  | Tavily                         | Anthropic (Claude)
+------------------+--------------------------------+---------------------------------
+Input             | A search query                 | A prompt / conversation
+Output            | Web results (URLs, content,    | Generated text, reasoning,
+                  | optional short answer)         | or tool calls
+Current info?     | Yes - searches the live web    | No - only training data or what
+                  |                                | you put in the prompt
+Role in an agent  | The TOOL (gets facts)          | The BRAIN (decides, writes answer)
+
+
+2. HOW THEY WORK TOGETHER (RAG)
+-------------------------------
+  question -> Tavily (fetch live data) -> results -> Claude (reads results) -> answer
+
+- Tavily alone : gives data, but no reasoning ("should I travel today?").
+- Claude alone : cannot know today's weather; it would guess or say it doesn't know.
+- Together     : Retrieval-Augmented Generation (RAG) - retrieve facts, then
+                 generate an answer grounded in them.
+
+
+3. PIPELINE vs AGENT
+--------------------
+- Pipeline (Lesson 3 script): your code ALWAYS calls Tavily first, then Claude.
+- Agent (Lesson 2, LangGraph): Claude DECIDES when (and how often) to call Tavily.
+  Letting the model choose its tool calls is what makes it an agent.
+
+
+4. NOTE ON include_answer=True
+------------------------------
+Tavily can return its own short LLM-written summary. That is Tavily's internal
+model, not Claude. Example: the Blackwell answer mixed specs from different
+products (RTX 5090 GB202 vs B200 data-center chip) and confused TB/s with
+terabits - fluent but blended sources. Always verify key facts.
+
+
+5. HOW TO CHECK OUTPUT IS CORRECT
+---------------------------------
+- Grounding   : compare Claude's numbers to the raw search data (e.g. JSON).
+- Freshness   : check timestamps (e.g. "localtime") match when you ran it.
+- Reality     : cross-check against an independent source (official site, browser).
+- Truncation  : if an answer stops mid-word, print resp.stop_reason; if it says
+                "max_tokens", increase max_tokens.
+
+
+6. WHY RAW SCRAPING OFTEN FAILS
+-------------------------------
+Sites like weather.com load their data with JavaScript after the page opens.
+A simple requests + BeautifulSoup scraper only sees menus and footers, not the
+actual numbers. Search APIs like Tavily return clean, structured content instead.
